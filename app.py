@@ -53,9 +53,9 @@ for email_id in email_ids:
             st.write(f"Subject: {subject}")
             
             # Use regex to extract the values in the parentheses
-           match = re.search(r"\(([^)]+)\)\s*and\s*\(([^)]+)\)", subject)
+            match = re.search(r"\(([^)]+)\)\s*and\s*\(([^)]+)\)", subject)
 
-           if match:
+            if match:
                 st.write(f"Regex matched!")
                 st.write(f"Player 1 values: {match.group(1)}")
                 st.write(f"Player 2 values: {match.group(2)}")
