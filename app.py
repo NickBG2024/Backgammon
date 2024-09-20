@@ -11,8 +11,8 @@ st.title("Backgammon Match Results via Email")
 EMAIL = st.secrets["imap"]["email"]
 PASSWORD = st.secrets["imap"]["password"]
 
-# Connect to the Gmail IMAP server
-mail = imaplib.IMAP4_SSL('imap.gmail.com')
+# Connect to the Sabga IMAP server
+mail = imaplib.IMAP4_SSL('mail.sabga.co.za')
 mail.login(EMAIL, PASSWORD)
 
 # Select the inbox
