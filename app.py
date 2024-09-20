@@ -57,6 +57,10 @@ for email_id in email_ids:
             if match:
                 player_1_values = match.group(1)  # Values for Player 1
                 player_2_values = match.group(2)  # Values for Player 2
+
+                #printing values to help step-through parsing
+                st.write(player_1_values)
+                st.write(player_2_values)
                 
                 # Split the values and format them into a readable structure
                 match_results.append({
