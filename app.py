@@ -11,6 +11,14 @@ st.title("Backgammon Match Results via Email")
 EMAIL = st.secrets["imap"]["email"]
 PASSWORD = st.secrets["imap"]["password"]
 
+try:
+    mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)  # Update to correct server
+    mail.login(EMAIL, PASSWORD)
+    mail.select('inbox')
+    st.write("Login successful")
+except imaplib.IMAP4.error as e:
+    st.error(f"IMAP login failed: {str(e)}")
+    
 # Connect to custom email
 mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)
 mail.login(EMAIL, PASSWORD)
