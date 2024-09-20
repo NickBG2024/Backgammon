@@ -2,7 +2,6 @@ import streamlit as st
 import imaplib
 import email
 import re
-import pandas as pd
 
 # Streamlit title
 st.title("SANDBOX: Backgammon Match Details parsing, via Email - subject: Admin: A league match was played")
@@ -11,6 +10,7 @@ st.title("SANDBOX: Backgammon Match Details parsing, via Email - subject: Admin:
 EMAIL = st.secrets["imap"]["email"]
 PASSWORD = st.secrets["imap"]["password"]
 
+# Try connecting to the email server
 try:
     mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)  # Update to correct server
     mail.login(EMAIL, PASSWORD)
@@ -18,15 +18,8 @@ try:
     st.write("Login successful")
 except imaplib.IMAP4.error as e:
     st.error(f"IMAP login failed: {str(e)}")
-    
-# Connect to custom email
-mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)
-mail.login(EMAIL, PASSWORD)
 
-# Select the inbox
-mail.select('inbox')
-
-# Search for emails with "Admin" in the subject
+# Search for emails with "Admin: A league match was played" in the subject
 status, messages = mail.search(None, '(SUBJECT "Admin: A league match was played")')
 
 # Check the number of emails found
@@ -36,7 +29,7 @@ email_ids = messages[0].split()
 if email_ids:
     st.write(f"Found {len(email_ids)} emails with 'Admin: A league match was played' in the subject.")
 else:
-    st.write("No emails found with string term in the subject.")
+    st.write("No emails found with this search term in the subject.")
 
 # Initialize empty list to store match results
 match_results = []
@@ -51,7 +44,6 @@ for email_id in email_ids:
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
             st.write(f"Subject: {subject}")
-
 
             # Updated regex to match the format
             match = re.search(r"\(([^)]+)\) and [^\(]+\(([^)]+)\)", subject)
@@ -68,9 +60,8 @@ for email_id in email_ids:
                 # Display the extracted data in the Streamlit app
                 st.write(f"Player 1 values: {player_1_stats}")
                 st.write(f"Player 2 values: {player_2_stats}")
-
             else:
-                st.write("No match emails found.")
+                st.write("No match found in this email.")
 
 # Logout from the email server
 mail.logout()
