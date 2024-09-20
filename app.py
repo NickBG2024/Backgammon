@@ -56,11 +56,11 @@ for email_id in email_ids:
            match = re.search(r"\(([^)]+)\)\s*and\s*\(([^)]+)\)", subject)
 
            if match:
-    st.write(f"Regex matched!")
-    st.write(f"Player 1 values: {match.group(1)}")
-    st.write(f"Player 2 values: {match.group(2)}")
-else:
-    st.write("No match found.")
+                st.write(f"Regex matched!")
+                st.write(f"Player 1 values: {match.group(1)}")
+                st.write(f"Player 2 values: {match.group(2)}")
+            else:
+                st.write("No match found.")
                 
                 # Split the values and format them into a readable structure
                 match_results.append({
