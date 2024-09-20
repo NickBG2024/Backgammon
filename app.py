@@ -7,9 +7,9 @@ import pandas as pd
 # Streamlit title
 st.title("Backgammon Match Results via Email")
 
-# Email login credentials (ensure you use environment variables or other secure methods in production)
-EMAIL = 'nickgroll@gmail.com'
-PASSWORD = 'bowwow02'
+# Get email credentials from Streamlit Secrets
+EMAIL = st.secrets["imap"]["email"]
+PASSWORD = st.secrets["imap"]["password"]
 
 # Connect to the Gmail IMAP server
 mail = imaplib.IMAP4_SSL('imap.gmail.com')
