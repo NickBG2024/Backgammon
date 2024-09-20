@@ -23,7 +23,7 @@ if match:
         "Player 2": player_2_stats,
     }
     
-st.write(f"Player 1 values: {player_1_stats}")
-st.write(f"Player 2 values: {player_2_stats}")
+    st.write(f"Player 1 values: {player_1_stats}")
+    st.write(f"Player 2 values: {player_2_stats}")
 else:
     st.write("No match found.")
