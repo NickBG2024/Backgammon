@@ -51,32 +51,26 @@ for email_id in email_ids:
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
             st.write(f"Subject: {subject}")
-            
-            # Use regex to extract the values in the parentheses
-            match = re.search(r"\(([^)]+)\)\s*and\s*\(([^)]+)\)", subject)
 
+
+            # Updated regex to match the format
+            match = re.search(r"\(([^)]+)\) and [^\(]+\(([^)]+)\)", subject)
+
+            # Check if the match was successful
             if match:
-                st.write(f"Regex matched!")
-                st.write(f"Player 1 values: {match.group(1)}")
-                st.write(f"Player 2 values: {match.group(2)}")
-            else:
-                st.write("No match found.")
-                
-                # Split the values and format them into a readable structure
-                match_results.append({
-                    "Player 1": match.group(0).split()[0],
-                    "Player 1 Values": player_1_values,
-                    "Player 2": match.group(2).split()[0],
-                    "Player 2 Values": player_2_values
-                })
+                player_1_values = match.group(1)  # Values for Player 1
+                player_2_values = match.group(2)  # Values for Player 2
+    
+                # Split the values to get individual stats
+                player_1_stats = player_1_values.split()  # ['4', '3', '6.741', '2.532']
+                player_2_stats = player_2_values.split()  # ['1', '3', '15.054', '1.035']
 
-# Convert match results into a DataFrame
-if match_results:
-    df = pd.DataFrame(match_results)
-    st.write("### Match Results Table")
-    st.write(df)
-else:
-    st.write("No match emails found.")
+                # Display the extracted data in the Streamlit app
+                st.write(f"Player 1 values: {player_1_stats}")
+                st.write(f"Player 2 values: {player_2_stats}")
+
+            else:
+            st.write("No match emails found.")
 
 # Logout from the email server
 mail.logout()
