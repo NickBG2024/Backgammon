@@ -34,9 +34,9 @@ email_ids = messages[0].split()
 
 # Display how many emails were found
 if email_ids:
-    st.write(f"Found {len(email_ids)} emails with 'Admin' in the subject.")
+    st.write(f"Found {len(email_ids)} emails with 'Admin: A league match was played' in the subject.")
 else:
-    st.write("No emails found with 'Admin' in the subject.")
+    st.write("No emails found with string term in the subject.")
 
 # Initialize empty list to store match results
 match_results = []
@@ -50,6 +50,7 @@ for email_id in email_ids:
         if isinstance(response_part, tuple):
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
+            st.write(subject)
             
             # Use regex to extract the values in the parentheses
             match = re.search(r"\((.*?)\) and \((.*?)\)", subject)
