@@ -1,4 +1,5 @@
 import re
+import streamlit as st
 
 # Streamlit title
 st.title("Mazaltov, you've found the test printing")
