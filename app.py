@@ -27,7 +27,7 @@ mail.login(EMAIL, PASSWORD)
 mail.select('inbox')
 
 # Search for emails with a specific subject
-status, messages = mail.search(None, '(SUBJECT "A league match was played")')
+status, messages = mail.search(None, '(SUBJECT "league match")')
 
 # Get the list of email IDs
 email_ids = messages[0].split()
