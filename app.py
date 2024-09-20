@@ -70,7 +70,7 @@ for email_id in email_ids:
                 st.write(f"Player 2 values: {player_2_stats}")
 
             else:
-            st.write("No match emails found.")
+                st.write("No match emails found.")
 
 # Logout from the email server
 mail.logout()
