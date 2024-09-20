@@ -1,7 +1,7 @@
 import re
 
 # Streamlit title
-st.title("SANDBOX: Backgammon Match Details parsing, via Email - subject: Admin: A league match was played")
+st.title("Mazaltov, you've found the test printing")
 
 test_subject = "Admin: A league match was played between MikeHagg (4 3 6.741 2.532) and NickBG (1 3 15.054 1.035) on Heroes!"
 
