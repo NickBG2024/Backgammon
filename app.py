@@ -5,7 +5,7 @@ import re
 import pandas as pd
 
 # Streamlit title
-st.title("Backgammon Match Results via Email")
+st.title("Backgammon Match Results via Email - subject: Admin")
 
 # Get email credentials from Streamlit Secrets
 EMAIL = st.secrets["imap"]["email"]
