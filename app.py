@@ -26,11 +26,17 @@ mail.login(EMAIL, PASSWORD)
 # Select the inbox
 mail.select('inbox')
 
-# Search for emails with a specific subject
+# Search for emails with "Admin" in the subject
 status, messages = mail.search(None, '(SUBJECT "Admin")')
 
-# Get the list of email IDs
+# Check the number of emails found
 email_ids = messages[0].split()
+
+# Display how many emails were found
+if email_ids:
+    st.write(f"Found {len(email_ids)} emails with 'Admin' in the subject.")
+else:
+    st.write("No emails found with 'Admin' in the subject.")
 
 # Initialize empty list to store match results
 match_results = []
