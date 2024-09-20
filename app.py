@@ -5,7 +5,7 @@ import re
 import pandas as pd
 
 # Streamlit title
-st.title("Backgammon Match Results via Email - subject: Admin")
+st.title("SANDBOX: Backgammon Match Details parsing, via Email - subject: Admin: A league match was played")
 
 # Get email credentials from Streamlit Secrets
 EMAIL = st.secrets["imap"]["email"]
@@ -27,7 +27,7 @@ mail.login(EMAIL, PASSWORD)
 mail.select('inbox')
 
 # Search for emails with "Admin" in the subject
-status, messages = mail.search(None, '(SUBJECT "Admin")')
+status, messages = mail.search(None, '(SUBJECT "Admin: A league match was played")')
 
 # Check the number of emails found
 email_ids = messages[0].split()
