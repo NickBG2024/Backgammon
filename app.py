@@ -43,10 +43,7 @@ for email_id in email_ids:
         if isinstance(response_part, tuple):
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
-            st.write(f"Subjjject: {subject}")
-
-            st.write(f"Subjjjectttt: {subject}")
-
+            
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
             cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject)
             st.write(cleaned_subject)
