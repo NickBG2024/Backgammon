@@ -50,7 +50,7 @@ for email_id in email_ids:
         if isinstance(response_part, tuple):
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
-            st.write(f"Subject: "{subject})
+            st.write(f"Subject: {subject}")
             
             # Use regex to extract the values in the parentheses
             match = re.search(r"\((.*?)\) and \((.*?)\)", subject)
