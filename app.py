@@ -66,8 +66,14 @@ for email_id in email_ids:
 
                 # Store in match_results
                 match_results.append({
-                    "Player 1": player_1_stats,
-                    "Player 2": player_2_stats
+                    "Player 1 Points": player_1_stats[0],
+                    "Player 1 Match Length": player_1_stats[1],
+                    "Player 1 PR": player_1_stats[2],
+                    "Player 1 Luck": player_1_stats[3],
+                    "Player 2 Points": player_2_stats[0],
+                    "Player 2 Match Length": player_2_stats[1],
+                    "Player 2 PR": player_2_stats[2],
+                    "Player 2 Luck": player_2_stats[3]
                 })
             else:
                 st.write("No match found in this email.")
