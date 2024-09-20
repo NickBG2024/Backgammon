@@ -34,7 +34,7 @@ email_ids = messages[0].split()
 
 # Display how many emails were found
 if email_ids:
-    st.write(f"Found {len(email_ids)} emails with 'Admin: A league match was played' in the subject.")
+    st.write("Found {len(email_ids)} emails with 'Admin: A league match was played' in the subject.")
 else:
     st.write("No emails found with string term in the subject.")
 
