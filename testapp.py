@@ -40,7 +40,7 @@ def insert_match(conn, p1_stats, p2_stats):
 conn = create_connection()
 
 # Sample email subject for testing purposes
-subject = "Fwd: Admin: A league match was played between MikeHagg (4 3 6.741 2.532) and NickBG (1 3 15.054 1.035) on Heroes!"
+subject = "Fwd: Admin: A league match was played between MikeHagg (4 3 6.71 2.532) and NickBGG (1 3 15.054 1.075) on Heroes!"
 
 # Streamlit title
 st.title("Backgammon Match Results")
