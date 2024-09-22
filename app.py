@@ -54,6 +54,7 @@ for email_id in email_ids:
 
             # Check if the match was successful
             if match:
+                st.write(f"Match found for email {email_id}")
                 player_1_values = match.group(1)  # Values for Player 1
                 player_2_values = match.group(2)  # Values for Player 2
     
