@@ -12,7 +12,7 @@ PASSWORD = st.secrets["imap"]["password"]
 
 # Try connecting to the email server
 try:
-    mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)  # Update to correct server
+    mail = imaplib.IMAP4_SSL('mail.sabga.co.za', 993)
     mail.login(EMAIL, PASSWORD)
     mail.select('inbox')
     st.write("Login successful")
@@ -43,10 +43,11 @@ for email_id in email_ids:
         if isinstance(response_part, tuple):
             msg = email.message_from_bytes(response_part[1])
             subject = msg['subject']
-            
+            st.write(f"Subject: {subject}")
+
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
-            cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject)
-            st.write(cleaned_subject)
+            cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject).strip()
+            st.write(f"Cleaned Subject: {cleaned_subject}")  # Debugging line
 
             # Updated regex to match the format in the cleaned subject
             match = re.search(r"\(([^)]+)\) and [^\(]+\(([^)]+)\)", cleaned_subject)
@@ -57,8 +58,8 @@ for email_id in email_ids:
                 player_2_values = match.group(2)  # Values for Player 2
     
                 # Split the values to get individual stats
-                player_1_stats = player_1_values.split()  # ['4', '3', '6.741', '2.532']
-                player_2_stats = player_2_values.split()  # ['1', '3', '15.054', '1.035']
+                player_1_stats = player_1_values.split()
+                player_2_stats = player_2_values.split()
 
                 # Display the extracted data in the Streamlit app
                 st.write(f"Player 1 values: {player_1_stats}")
@@ -76,7 +77,7 @@ for email_id in email_ids:
                     "Player 2 Luck": player_2_stats[3]
                 })
             else:
-                st.write("No match found in this email.")
+                st.write("No match found for this email.")  # Add this check to avoid errors
 
 # Logout from the email server
 mail.logout()
