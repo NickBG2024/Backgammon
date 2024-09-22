@@ -78,7 +78,7 @@ for email_id in email_ids:
                     "Player 2 Luck": player_2_stats[3]
                 })
             else:
-                st.write("No match found for this email.")  # Add this check to avoid errors
+                st.write(f"No match found for email {email_id}")  # Add this check to avoid errors
 
 # Logout from the email server
 mail.logout()
