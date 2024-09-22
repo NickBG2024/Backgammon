@@ -71,9 +71,9 @@ for email_id in email_ids:
                       html_body = part.get_payload(decode=True).decode('utf-8')
                       st.write(f"Body (HTML): {html_body}")
             else:
-            # For non-multipart messages (single-part emails)
-            body = msg.get_payload(decode=True).decode('utf-8')
-            st.write(f"Body: {body}")
+                # For non-multipart messages (single-part emails)
+                body = msg.get_payload(decode=True).decode('utf-8')
+                st.write(f"Body: {body}")
 
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
             cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject).strip()
