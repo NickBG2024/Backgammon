@@ -47,6 +47,7 @@ for email_id in email_ids:
 
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
             cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject).strip()
+            st.write(f"Cleaned Subject: {repr(cleaned_subject)}")  # Debugging: Show cleaned subject line
             cleaned_subject = cleaned_subject.replace("\r\n", " ")  # Replace any \r\n with a space
             st.write(f"Cleaned Subject: {repr(cleaned_subject)}")  # Debugging line
 
