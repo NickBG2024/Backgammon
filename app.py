@@ -46,42 +46,42 @@ for email_id in email_ids:
             st.write(f"Subject: {subject}")
 
             for response_part in msg_data:
-    if isinstance(response_part, tuple):
-        msg = email.message_from_bytes(response_part[1])
+                if isinstance(response_part, tuple):
+                   msg = email.message_from_bytes(response_part[1])
 
-        # Extract the subject
-        subject = msg['subject']
-        st.write(f"Subject: {subject}")
-        
-        # Extract the sender's email address
-        sender = msg['from']
-        st.write(f"From: {sender}")
-        
-        # Extract the recipient's email address
-        recipient = msg['to']
-        st.write(f"To: {recipient}")
-        
-        # Extract CC if available
-        cc = msg.get('cc', 'None')  # CC might not always be present
-        st.write(f"Cc: {cc}")
-        
-        # Extract the email's date and time
-        email_date = msg['date']
-        st.write(f"Date: {email_date}")
-
-        # Extract the body (plain text or HTML)
-        if msg.is_multipart():
-            for part in msg.walk():
-                if part.get_content_type() == "text/plain":  # Extract plain text
-                    body = part.get_payload(decode=True).decode('utf-8')
-                    st.write(f"Body (text): {body}")
-                elif part.get_content_type() == "text/html":  # Extract HTML if needed
-                    html_body = part.get_payload(decode=True).decode('utf-8')
-                    st.write(f"Body (HTML): {html_body}")
-        else:
-            # For non-multipart messages (single-part emails)
-            body = msg.get_payload(decode=True).decode('utf-8')
-            st.write(f"Body: {body}")
+                    # Extract the subject
+                    subject = msg['subject']
+                    st.write(f"Subject: {subject}")
+                    
+                    # Extract the sender's email address
+                    sender = msg['from']
+                    st.write(f"From: {sender}")
+                    
+                    # Extract the recipient's email address
+                    recipient = msg['to']
+                    st.write(f"To: {recipient}")
+                    
+                    # Extract CC if available
+                    cc = msg.get('cc', 'None')  # CC might not always be present
+                    st.write(f"Cc: {cc}")
+                    
+                    # Extract the email's date and time
+                    email_date = msg['date']
+                    st.write(f"Date: {email_date}")
+            
+                    # Extract the body (plain text or HTML)
+                    if msg.is_multipart():
+                        for part in msg.walk():
+                            if part.get_content_type() == "text/plain":  # Extract plain text
+                                body = part.get_payload(decode=True).decode('utf-8')
+                                st.write(f"Body (text): {body}")
+                            elif part.get_content_type() == "text/html":  # Extract HTML if needed
+                                html_body = part.get_payload(decode=True).decode('utf-8')
+                                st.write(f"Body (HTML): {html_body}")
+                    else:
+                        # For non-multipart messages (single-part emails)
+                        body = msg.get_payload(decode=True).decode('utf-8')
+                        st.write(f"Body: {body}")
 
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
             cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject).strip()
