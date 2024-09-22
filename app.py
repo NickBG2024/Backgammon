@@ -51,8 +51,8 @@ for email_id in email_ids:
             cleaned_subject = cleaned_subject.replace("\r\n", " ")  # Replace any \r\n with a space
             st.write(f"Cleaned Subject: {repr(cleaned_subject)}")  # Debugging line
 
-            # Updated regex to match the format in the cleaned subject
-            match = re.search(r"\(([^)]+)\) and [^\(]+\(([^)]+)\)", cleaned_subject)
+            # Updated regex to account for spaces or newlines between the first player and the word 'and'
+            match = re.search(r"\(([^)]+)\)\s*and\s*[^\(]+\(([^)]+)\)", cleaned_subject)
 
             # Check if the match was successful
             if match:
