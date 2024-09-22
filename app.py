@@ -47,7 +47,7 @@ for email_id in email_ids:
 
             # Clean up subject to remove any 'Fwd:' or 'Re:' prefixes
             cleaned_subject = re.sub(r"^(Fwd:|Re:)\s*", "", subject).strip()
-            st.write(f"Cleaned Subject: {cleaned_subject}")  # Debugging line
+            st.write(f"Cleaned Subject: {repr(cleaned_subject)}")  # Debugging line
 
             # Updated regex to match the format in the cleaned subject
             match = re.search(r"\(([^)]+)\) and [^\(]+\(([^)]+)\)", cleaned_subject)
