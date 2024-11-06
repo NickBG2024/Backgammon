@@ -7,6 +7,9 @@ def create_connection():
     conn = sqlite3.connect("backgammon_matches.db")  # Creates the database file if it doesn't exist
     cursor = conn.cursor()
     
+    # Drop the existing table if it exists (for testing purposes only)
+    cursor.execute("DROP TABLE IF EXISTS matches")
+    
     # Create table for storing match results if it doesn't exist
     cursor.execute('''CREATE TABLE IF NOT EXISTS matches (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
